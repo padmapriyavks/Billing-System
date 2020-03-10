@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>product list</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src ="js/jquery-3.4.1.min.js"></script>
+      <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+      <link type="text/css" href="css/custom.css" rel="stylesheet">
+   </head>
+   <script type="text/javascript">
+      $(document).ready(function () {
+         var i = 2;
+      
+         $("#addrow").on("click", function () {
+             var newRow = $(".box");
+             var cols = "";
+      
+             cols += '<tr class="head" id="dele"><td><input type="text"  id="name_'+i+'" class="col-lg-3 nm" name="name"/></td>';
+             cols += '<td><input type="number"  id="cost_'+i+'" class="col-lg-3 cost nm"  name="price"/></td>';
+             cols += '<td><input type="number"  id="qty_'+i+'" class="col-lg-3 qty nm"  name="qty"/></td>';
+             cols += '<td><input type="number"  id="tax_'+i+'" class="col-lg-1 tax nm" name="tax"/></td>';
+             cols += '<td><input type="number"  id="tot_'+i+'" class="col-lg-1 tot nm" name="subtot"/></td>';
+             cols += '<td><i class="glyphicon glyphicon-minus del"></i></td>';
+             cols +=  '</tr>';
+             newRow.append(cols);
+             $(".extra").append(newRow);
+             i++;
+         });
+      
+          var select =$(".head"); 
+
+       $(select).on("click",".del",function(event){
+       	
+                  $(this).closest("#dele").remove(); 
+                  i -=1;
+ });
+
+             $(select).on("change",".cost",function(){
+             	var input2= $(this).attr("id"); 
+
+                  var split = input2.split("_");
+                
+	                Q =  $("#qty_"+split[1]).val();
+	                V =  $("#cost_"+split[1]).val();
+
+                 $("#tot_"+split[1]).val(Q*V);
+
+                 var sum = 0;
+                 $('.tot').each(function() {
+                 sum += Number($(this).val());
+                 $(".grd").val(sum);
+                 
+              });
+
+             });
+         
+             $(select).on("change",".qty",function(){
+
+                 var input2= $(this).attr("id"); 
+
+                  var split = input2.split("_");
+                
+	                Q =  $("#qty_"+split[1]).val();
+	                V =  $("#cost_"+split[1]).val();
+
+                 $("#tot_"+split[1]).val(Q*V);
+
+                 var sum = 0;
+                 $('.tot').each(function() {
+                 sum += Number($(this).val());
+                 $(".grd").val(sum);
+                 
+              });
+                 
+                 
+             });
+         
+         
+         
+      
+      });
+
+   </script>
+   <body>
+  <div class="head">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-12">
+               <div class="row">
+                  <div class="col-lg-3">
+                     <!-- Product html Goes Here -->
+                     <p>INVENTORY NAME</p>
+                  </div>
+                  <div class=col-lg-3>
+                     <!-- Product html Goes Here -->
+                     <p>COST</p>
+                  </div>
+                  <div class="col-lg-3">
+                     <!-- Product html Goes Here -->
+                     <p>QUANTITY</p>
+                  </div>
+                  <div class="col-lg-3">
+                     <!-- Product html Goes Here -->
+                     <P>TOTAL</P>
+                  </div>
+               </div>
+               <div class="row">
+                
+                  <div class="col-lg-3">
+                     <!-- Product html Goes Here -->
+                     <input type="text" name="name"   />
+                  </div>
+                  <div class="col-lg-3 ">
+                     <!-- Product html Goes Here -->
+                     <input type="number" class="cost" id="cost_1" name="cost"  />
+                  </div>
+                  <div class="col-lg-3 ">
+                     <!-- Product html Goes Here -->
+                     <input type="number" class="qty" id="qty_1"  name="qty"  />
+                  </div>
+                  <div class="col-lg-1 ">
+                     <!-- Product html Goes Here -->
+                     <input type="number" class="tax" id="tax_1"  name="tax"/>
+                  </div>
+                  <div class="col-lg-1 ">
+                     <!-- Product html Goes Here -->
+                     <input type="text" class="tot" id="tot_1"  name="tot"/>
+                  </div>
+                  <div class="col-lg-1">
+                     <span><i class="glyphicon glyphicon-plus add" id="addrow" ></i>
+                     </span>
+                  </div>
+                
+               </div>
+               <div class="row extra">
+                  <div class="col-lg-12 box">
+                </div>
+            </div>
+            <div class="col-md-8 all">
+             Grand Total
+            </div>
+      <div class="col-md-2">
+         <input type="number" name="total[]" class="grd over" >
+      </div>
+         </div>
+      </div>
+      </div>
+      </div>
+   </body>
+</html>

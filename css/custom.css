@@ -1,0 +1,23 @@
+body{
+  width: 100%;
+  height: auto;
+  background: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  font-family: "Robato",sans-serif;
+  font-size: 17px;
+}
+.nm{
+    width:78%;
+    margin-top: 20px;
+    margin-right: 80px;
+}
+.all{
+    text-align: right; 
+    margin-right: 150px;
+}
+.over{
+    width:75%;
+ margin-top: 20px;
+}
+.add{
+    width: 25%;
+}
